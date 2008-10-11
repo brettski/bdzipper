@@ -24,11 +24,21 @@ namespace BDZipper
         /// </summary>
         public List<FileInfo> Files
         { get; set; }
-
+        /// <summary>
+        /// String of current directory we are pointing at
+        /// </summary>
         public string CurrentDirectory
         { get; set; }
-
-
+        /// <summary>
+        /// Breadcrumb path for top of page
+        /// </summary>
+        public string Breadcrumb
+        { get; set; }
+        /// <summary>
+        /// Cannot navigate any higher then this point.
+        /// </summary>
+        public string HighestDirectoryAllowed
+        { get; set; }
 
     }
 
