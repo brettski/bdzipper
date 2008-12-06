@@ -1,0 +1,16 @@
+﻿body 
+{
+    font-family:Arial, Tahoma, Times New Roman;
+    font-size:10px;
+}
+#lblOut
+{
+    border-top: solid 1px green;
+    border-bottom: solid 2px red;
+}
+.error
+{
+    color:Red;
+    font-style:italic;
+    font-weight:bold;
+}
