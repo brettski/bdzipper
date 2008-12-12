@@ -9,19 +9,22 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div id="header">
     <h3>BDZipper</h3>
     
     </div>
     <div id="fhead">
     </div>
-    <asp:Label ID="lblOut" runat="server"></asp:Label>
+    <asp:Label id="lblOut" runat="server"></asp:Label>
     <div id="msgBox"></div>
-    <asp:Button ID="Button1" runat="server" Text="Get Checked" />
+    <asp:Button id="Button1" runat="server" Text="Get Checked" />
     <div id="filelist">
         <asp:CheckBoxList ID="cblFiles" runat="server">
 
         </asp:CheckBoxList>
+    </div>
+    <div id="footer">
+    
     </div>
     </form>
 </body>

@@ -19,27 +19,24 @@ namespace BDZipper.Site
             //
         }
         /// <summary>
-        /// Get a configuration parameter set in web.config
+        /// Verify value is actually an int
         /// </summary>
-        internal static string getConfigParam(string keyValue)
+        /// <param name="s"></param>
+        /// <returns>Same value if clean</returns>
+        public static string sanitize_int(string s)
         {
-            
+            try{ 
+                int s1 = Convert.ToInt32(s);
+                //int s2 = 
+            }
+            catch (Exception e)
+            {
+                //throw new Exception "Not an int value as expected on GET!";
+                throw new Exception("Not as int value as expected on GET!");
+            }
+
+
             return "";
-        }
-        /// <summary>
-        /// Put BDZipper into class
-        /// </summary>
-        internal static void stuffBDZClass()
-        {
-
-        }
-        /// <summary>
-        /// Get BDZipper class out of session
-        /// </summary>
-        internal static void getBDZClass()
-        {
-            
-
         }
     }
 }
