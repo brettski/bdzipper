@@ -18,6 +18,8 @@ public partial class _Default : System.Web.UI.Page
         {
             curDir = BDZipper.Site.SessionManager.StartDirectory;
             dirinfo = new DirectoryInfo(curDir);
+            // Get current Directory from session or web.config, make sure it exists.  
+            
             if (!dirinfo.Exists)
             {
                 lblOut.Text = string.Format("Current Directory doesn't exist: {0} <br />", curDir);
@@ -26,15 +28,26 @@ public partial class _Default : System.Web.UI.Page
             }
             else
             {
-                foreach (DirectoryInfo di2 in dirinfo.GetDirectories())
+                // Since the currentDirectory does exist lets check to see if 'sd' is in the 
+                // url.
+                
+                //if (true)
+                //{ }
+                //foreach (DirectoryInfo di2 in dirinfo.GetDirectories())
+                //{
+                //    // We are forming a lot of business logic around the list items, this is why
+                //    // this need to be moved into a class to build it.
+                //    cblFiles.Items.Add(new ListItem("<a href='?sd=" + di2.Name + "'>" + di2.Name + "</a>", "d$" + di2.Name));
+                //}
+                //foreach (FileInfo fi2 in dirinfo.GetFiles())
+                //{
+                //    cblFiles.Items.Add(new ListItem(fi2.Name, "f$" + fi2.Name));
+                //}
+                BDZipper.BDZipper bdz = new BDZipper.BDZipper(dirinfo);
+                //Dictionary<string,string> il = new Dictionary<string,string>();
+                foreach (KeyValuePair<string,string> itemlist in bdz.GetItemListValues())
                 {
-                    // We are forming a lot of business logic around the list items, this is why
-                    // this need to be moved into a class to build it.
-                    cblFiles.Items.Add(new ListItem("<a href='?sd=" + di2.Name + "'>" + di2.Name + "</a>", "d$" + di2.Name));
-                }
-                foreach (FileInfo fi2 in dirinfo.GetFiles())
-                {
-                    cblFiles.Items.Add(new ListItem(fi2.Name, "f$" + fi2.Name));
+                    cblFiles.Items.Add(new ListItem(itemlist.Value, itemlist.Key));
                 }
             }
         }

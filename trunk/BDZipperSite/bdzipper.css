@@ -14,3 +14,14 @@
     font-style:italic;
     font-weight:bold;
 }
+#header 
+{
+    border-bottom: solid 3px gray;
+    background-color: #EEE
+  
+}
+#fhead
+{
+    padding-bottom: 1em;
+
+}
