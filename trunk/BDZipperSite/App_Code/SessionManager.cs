@@ -19,31 +19,52 @@ namespace BDZipper.Site
         // I think for simplicity, we will use the same key string in the web.config AppSettings as
         // we do for the session variable.  This way we can use the same constant for both!
         private const string startDirectory = "StartDirectory";
+        private const string currentDirectory = "CurrentDirectory";
 
         # endregion
 
 
         //HttpContext.Current.Session["brett"] = "me"
         /// <summary>
-        /// The starting direcory for the application
+        /// Depricated: The starting direcory for the application
         /// </summary>
         public static string StartDirectory
         {
             get
             {
-                if (null == HttpContext.Current.Session[startDirectory])
-                {
-                    return ConfigurationManager.AppSettings[startDirectory];
-                }
-                else
-                {
-                    return (string)HttpContext.Current.Session[startDirectory];
-                }
+                return GetSessionValue(startDirectory, true);
             }
             set
             {
                 HttpContext.Current.Session[startDirectory] = value;
             }
+        }
+
+        public static string CurrentDirectory
+        {
+            get
+            {
+                return GetSessionValue(currentDirectory, false);
+            }
+            set
+            {
+                HttpContext.Current.Session[currentDirectory] = value;
+            }
+        }
+        /// <summary>
+        /// Handles routine of getting values out of session and or AppSettings
+        /// </summary>
+        /// <param name="SessionVar"></param>
+        /// <param name="IsAppSetting"></param>
+        /// <returns></returns>
+        private static string GetSessionValue(string SessionVar, bool IsAppSetting)
+        {
+            if (null != HttpContext.Current.Session[SessionVar])
+                return (string)HttpContext.Current.Session[SessionVar];
+            else if (IsAppSetting)  // Session null with appSetting value
+                return ConfigurationManager.AppSettings[SessionVar];
+            else
+                return "";
         }
     }
 }
