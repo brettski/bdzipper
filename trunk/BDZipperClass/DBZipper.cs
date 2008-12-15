@@ -39,21 +39,23 @@ namespace BDZipper
             set 
             { 
                 _currentDirectory = value;
-                _currentDirectoryString = value.FullName;
+                _currentDirectoryString = value.FullName + "\\";
             }
 
         }
         /// <summary>
         /// Current working directory (linux: pwd)
+        /// This will change current directory to one set
         /// </summary>
         public string CurrentDirectoryString
         {
             get { return _currentDirectoryString; }
-
+            // Not sure if we want to keep this here.  Perhaps after security is setup and single 
+            // change directory method
             set 
             { 
-                _currentDirectoryString = value;
                 _currentDirectory = new DirectoryInfo(value);
+                _currentDirectoryString = _currentDirectory.FullName + "\\";
             }
         }
         /// <summary>
@@ -61,7 +63,7 @@ namespace BDZipper
         /// </summary>
         public bool CurrentDirectoryExists
         {
-            get { return _currentDirectory.Exists; }
+            get { return CurrentDirectory.Exists; }
         }
         /// <summary>
         /// Breadcrumb of CurrentDirectory path for top of page
@@ -79,40 +81,27 @@ namespace BDZipper
         public string HighestDirectoryAllowed
         { get; set; }
         /// <summary>
-        /// Return collection for use for page directory list. 
-        /// Key is item value, Value is item text
+        /// Gets ItemList values as a List collection of Object.BDZItemsList
         /// </summary>
-        /// <returns>Key is item value, Value is item text</returns>
-        public Dictionary<string,string> GetItemListValues()
+        /// <returns>Generic List collection BDZItemList</returns>
+        public List<BDZItemList> GetItemListValues()
         {
-            Dictionary<string, string> ItemList = new Dictionary<string,string>();
-            // Write Parent ..
-            ItemList.Add("d$..", "<a href='?sd=d$$'>..</a>");
+            List<BDZItemList> ItemList = new List<BDZItemList>();
+            // Write Parent
+            ItemList.Add(new BDZItemList("<a href='?sd=d$$'>..</a>", "d$.."));
             // Write directories
-            foreach (DirectoryInfo di in _currentDirectory.GetDirectories())
+            foreach (DirectoryInfo di in CurrentDirectory.GetDirectories())
             {
-                ItemList.Add("d$" + di.Name, string.Format("<a href='?sd={0}'>{0}</a>", di.Name));
+                ItemList.Add(new BDZItemList(string.Format("<a href='?sd={0}'>{0}</a>", di.Name), "d$" + di.Name));
             }
-            // Next Files (More logic added to this later to act on file.
-            foreach (FileInfo fi in _currentDirectory.GetFiles())
+            foreach (FileInfo fi in CurrentDirectory.GetFiles())
             {
-                ItemList.Add("f$" + fi.Name, fi.Name);
+                ItemList.Add(new BDZItemList(fi.Name, "f$" + fi.Name));
             }
 
             return ItemList;
         }
-        public string[,] GetItemListValues()
-        {
-            // Array is zero based so we don't need -1 since we manually add parent directory
-            int n = _currentDirectory.GetDirectories().Length + _currentDirectory.GetFiles().Length;
-            string[,] ItemList = new string[n, 2];
-            // write parent
-            ItemList[0, 0] = "d$..";
-            ItemList[0, 1] = "<a href='?sd=d$$'>..</a>";
 
-
-            return ItemList;
-        }
         /// <summary>
         /// Checks to see if directory is a sub-directory of CurrentDirectory
         /// </summary>
@@ -120,8 +109,43 @@ namespace BDZipper
         /// <returns></returns>
         public bool CheckIfSubDirInCurrentDir(string Dir)
         {
-            return System.IO.Directory.Exists(_currentDirectoryString + Dir);
+            return System.IO.Directory.Exists(CurrentDirectoryString + Dir);
             
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <returns></returns>
+        public bool ChangeToSubDirectory(string dir)
+        {
+            if (!CheckIfSubDirInCurrentDir(dir))
+                return false;
+            else
+            {
+                DirectoryInfo disave = CurrentDirectory;
+                CurrentDirectory = new DirectoryInfo(CurrentDirectoryString + dir);
+                if (!CurrentDirectory.Exists)
+                {
+                    // put us back where we were
+                    CurrentDirectory = disave;
+                    return false;
+                }
+                else
+                    return true;
+            }
+        }
+        public bool ChangeToParentDirectory()
+        {
+            try
+            {
+                CurrentDirectory = new DirectoryInfo(CurrentDirectory.Parent.FullName);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
 
         
