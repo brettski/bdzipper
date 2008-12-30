@@ -1,0 +1,13 @@
+#summary Member Notes (No protection :()
+
+= Intsa-Thoughts =
+
+Add your content here.
+
+
+= Details =
+
+=== SessionManager ===
+* Add check (return bool) for haveSession()
+** Will allow to check if any session info is set to help determine what we may want to do.
+*** The point is we need to know if we are getting the starting point or the current point and it depends if there is something in session already.  
