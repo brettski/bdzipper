@@ -7,8 +7,8 @@ using System.Configuration;
 namespace BDZipper.Site
 {
     /// <summary>
-    /// This class maintains all session variables for us instead of putting them 
-    /// individually in the session.
+    /// This class maintains all session variables for us instead of handeling them 
+    /// individually in the session.  They are also strongly typed.
     /// </summary>
     public static class SessionManager
     {
@@ -26,7 +26,7 @@ namespace BDZipper.Site
 
         //HttpContext.Current.Session["brett"] = "me"
         /// <summary>
-        /// Depricated: The starting direcory for the application
+        /// The starting direcory for the application
         /// </summary>
         public static string StartDirectory
         {
@@ -34,10 +34,10 @@ namespace BDZipper.Site
             {
                 return GetSessionValue(startDirectory, true);
             }
-            set
-            {
-                HttpContext.Current.Session[startDirectory] = value;
-            }
+            //set
+            //{
+            //    HttpContext.Current.Session[startDirectory] = value;
+            //}
         }
 
         public static string CurrentDirectory
