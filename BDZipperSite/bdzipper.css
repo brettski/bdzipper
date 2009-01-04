@@ -1,7 +1,27 @@
-﻿body 
+﻿#PageContainer
 {
+    background-color:White;
     font-family:Arial, Tahoma, Times New Roman;
     font-size:10px;
+    /* Test Entry */
+    border: solid 3px Green;
+    
+}
+#PageContent
+{
+    /* Setting a width then auto margins center the div */
+    width:800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:White;
+    border-color:Black;
+    border-width:1px;
+    border-style:solid;
+    
+}
+body 
+{
+    
 }
 #lblOut
 {
@@ -14,21 +34,30 @@
     font-style:italic;
     font-weight:bold;
 }
-#header 
+#header
 {
     border-bottom: solid 3px gray;
-    background-color: #EEE
-  
+    background-color:Orange;
+    height:4em;
+    vertical-align:middle;
 }
+
 #fhead
 {
+    width: 50%;
+    float:left;
     padding-bottom: 1em;
-
+}
+#ihead
+{
+    width: 50%;
+    float:right;
+    padding-bottom: 1em;
 }
 #filelist
 {
      border: solid 2px #ddd;
-     margin-top: 1em;
+     margin-top: 2em;
     
 }
 #button1
