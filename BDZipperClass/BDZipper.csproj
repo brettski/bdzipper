@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bdz.cs" />
     <Compile Include="DBZipper.cs" />
     <Compile Include="test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

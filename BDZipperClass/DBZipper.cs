@@ -41,7 +41,6 @@ namespace BDZipper
                 _currentDirectory = value;
                 _currentDirectoryString = value.FullName + "\\";
             }
-
         }
         /// <summary>
         /// Current working directory (linux: pwd)
@@ -101,7 +100,6 @@ namespace BDZipper
 
             return ItemList;
         }
-
         /// <summary>
         /// Checks to see if directory is a sub-directory of CurrentDirectory
         /// </summary>
@@ -113,11 +111,22 @@ namespace BDZipper
             
         }
         /// <summary>
-        /// 
+        /// Change a directory
         /// </summary>
-        /// <param name="dir"></param>
-        /// <returns></returns>
-        public bool ChangeToSubDirectory(string dir)
+        /// <param name="dir">Full path to directory</param>
+        /// <returns>Result of change.  No directory change if false</returns>
+        public bool ChangeToDirectory(string dir)
+        {
+
+            return true;
+        }
+        /// <summary>
+        /// Changes to child (sub) directory within current directory.
+        /// </summary>
+        /// <param name="dir">string, directory name only, do not include path. 
+        /// Must be child in current directory.</param>
+        /// <returns>True is change is successful; False, unsuccessful no directory change</returns>
+        public bool ChangeToChildDirectory(string dir)
         {
             if (!CheckIfSubDirInCurrentDir(dir))
                 return false;
@@ -146,6 +155,24 @@ namespace BDZipper
                 return false;
             }
             return true;
+        }
+        public string DirectoryAccessResult(string fp2Dir)
+        {
+            DateTime dt = DateTime.Now;
+            try
+            {
+                dt = Directory.GetCreationTime(fp2Dir);
+                Directory.GetAccessControl(fp2Dir);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return "Unable to access that folder, Not Authorized.<br /><br />";
+            }
+            catch (Exception ex)
+            {
+                return "in class: " + ex.ToString();
+            }
+            return "OK: " + dt.ToString() + "<br />" + fp2Dir;
         }
 
         
