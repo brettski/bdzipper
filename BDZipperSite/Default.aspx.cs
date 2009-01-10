@@ -19,7 +19,11 @@ public partial class _Default : System.Web.UI.Page
         {
             if (string.Empty == BDZipper.Site.SessionManager.CurrentDirectory)
             {
-                bdz = new BDZipper.BDZipper(BDZipper.Site.SessionManager.StartDirectory);
+                bool b = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["UseStartDirectory"]);
+                if (b)
+                    bdz = new BDZipper.BDZipper(BDZipper.Site.SessionManager.StartDirectory);
+                else 
+                    bdz = new BDZipper.BDZipper(Server.MapPath("~/"));
             }
             else
             {
