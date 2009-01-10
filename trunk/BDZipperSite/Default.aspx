@@ -21,6 +21,7 @@
 			Response.Write("Raw URL: " + Request.RawUrl  + "<br />");
 			Response.Write("Application Path: " + Request.ApplicationPath + "<br />");
 			Response.Write("URL: " + Request.Url  + "<br />");
+            Response.Write("MapPath: " + Server.MapPath("~/") + "<br />");        
 			//Response.Write("URL Referrer" + Request.UrlReferrer.ToString() + "<br />");
 		%>
 	</div>
