@@ -9,6 +9,7 @@ namespace BDZipper
     /// <summary>
     /// Main class for our app
     /// </summary>
+    //[System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
     public class BDZipper
     {
 
@@ -167,6 +168,10 @@ namespace BDZipper
             catch (UnauthorizedAccessException)
             {
                 return "Unable to access that folder, Not Authorized.<br /><br />";
+            }
+            catch (System.Security.SecurityException)
+            {
+                return "Web security level will not allow access to security info";
             }
             catch (Exception ex)
             {
