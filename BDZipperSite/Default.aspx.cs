@@ -19,8 +19,7 @@ public partial class _Default : System.Web.UI.Page
         {
             if (string.Empty == BDZipper.Site.SessionManager.CurrentDirectory)
             {
-                bool b = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["UseStartDirectory"]);
-                if (b)
+                if (Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["UseStartDirectory"]))
                     bdz = new BDZipper.BDZipper(BDZipper.Site.SessionManager.StartDirectory);
                 else 
                     bdz = new BDZipper.BDZipper(Server.MapPath("~/"));

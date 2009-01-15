@@ -60,9 +60,34 @@ body
      margin-top: 2em;
     
 }
+#filelist td:hover
+{
+    background:yellow;
+}
 #button1
 {
     padding-bottom: 1em;
      margin-bottom: 1em;
 }
- 
+
+/*  
+ * The following css is for file info hover * */
+#info h4
+{
+    background:orange;
+    padding: .4em 1em;
+    margin: 0 0 .5em 0;
+    color:#222;
+    border-bottom: 1px solid #bfbfbf;
+    border-top: 1px solid black;
+}
+#info 
+{
+    font-family:Arial, Tahoma, Times New Roman;
+    font-size: 10px;
+    background:#ccc;
+    width: 600px;
+    padding-bottom: .5em;
+    overflow: hidden;
+    position: absolute;
+}
