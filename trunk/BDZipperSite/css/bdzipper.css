@@ -14,19 +14,20 @@
     margin-left: auto;
     margin-right: auto;
     background-color:White;
-    border-color:Black;
-    border-width:1px;
-    border-style:solid;
-    
+    border: solid 1px black;    
 }
-body 
+#header
 {
-    
+    padding:.33em .33em .33em .33em;
+    border-bottom: solid 3px gray;
+    background-color:Orange;
+    height:4em;
+    /*vertical-align:middle;*/
 }
 #lblOut
 {
-    border-top: solid 1px green;
-    border-bottom: solid 2px red;
+    padding: 0 0 0 1em;
+    display:block;
 }
 .error
 {
@@ -34,14 +35,6 @@ body
     font-style:italic;
     font-weight:bold;
 }
-#header
-{
-    border-bottom: solid 3px gray;
-    background-color:Orange;
-    height:4em;
-    vertical-align:middle;
-}
-
 #fhead
 {
     width: 50%;
@@ -67,7 +60,7 @@ body
 #button1
 {
     padding-bottom: 1em;
-     margin-bottom: 1em;
+    padding-left: 1em;
 }
 
 /*  
@@ -90,4 +83,8 @@ body
     padding-bottom: .5em;
     overflow: hidden;
     position: absolute;
+}
+#info2 /* Popup div with file contents */
+{
+    padding: 0 .33em 0 .5em;
 }

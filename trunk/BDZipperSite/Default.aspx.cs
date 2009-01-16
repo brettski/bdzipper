@@ -86,6 +86,7 @@ public partial class _Default : System.Web.UI.Page
             {
                 if (li.Selected)
                 {
+                    //lblOut.Text += li.Value + "<br />";
                     lblOut.Text += li.Value + "<br />";
                 }
             }
