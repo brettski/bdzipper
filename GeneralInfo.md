@@ -1,0 +1,20 @@
+# Introduction #
+
+BDZipper is a web-based file control application.  The end goal is for me to be able to deploy applications on shared hosts, especially unzipping.
+
+# Details #
+
+  * My only caveat is it's being build using .NET 3.5 instead of 2.0.  My reason, I figure by the time I have a decent working copy available, most hosts will be supporting it.  :)
+
+## Features ##
+  * Simple interface which allows you easy navigation through directory structure.
+  * NO DIRECTORY TREE VIEWS; can't stand them, not going to use them
+  * SQLite for security and any other database needs which crop up.
+  * Drop-in deployment, period.
+  * Unpack compressed files, first release will be .zip, .rar, and .gz
+  * edit text files (FCKEditor)
+
+Add your content here.  Format your content with:
+  * Text in **bold** or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
